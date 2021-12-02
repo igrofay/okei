@@ -18,7 +18,7 @@ private val DarkColorPalette = darkColors(
 
 private val LightColorPalette = lightColors(
     primary = Blue500,
-    primaryVariant = Blue700,
+    primaryVariant = Blue500,
     secondary = Teal200,
     surface = Gray200,
     onPrimary = Blue700
