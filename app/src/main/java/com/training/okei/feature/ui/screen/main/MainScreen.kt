@@ -1,12 +1,10 @@
 package com.training.okei.feature.ui.screen.main
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.MaterialTheme.colors
-import androidx.compose.material.MaterialTheme.typography
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -29,9 +27,9 @@ import androidx.navigation.compose.rememberNavController
 import com.skydoves.landscapist.glide.GlideImage
 import com.training.okei.data.User
 import com.training.okei.feature.main.ViewModelMain
-import com.training.okei.feature.navigation.NavigationRouteMain
+import com.training.okei.feature.navigation.NavRouteMain
+import com.training.okei.feature.navigation.workperform.NavWorkPerformance
 import com.training.okei.feature.navigation.listRoute
-import com.training.okei.feature.ui.screen.main.calendar.CalendarScreen
 import com.training.okei.feature.ui.theme.BrushBackgroundApp
 import com.training.okei.feature.ui.theme.brushSurface
 import com.training.okei.feature.ui.theme.gilroy
@@ -50,9 +48,12 @@ fun MainScreen(modelMain: ViewModelMain) {
             )
         }
     ) {
-        NavHost(navHostController, NavigationRouteMain.CalendarPlanRoute.route, Modifier.fillMaxSize().background(colors.BrushBackgroundApp)){
-            composable(NavigationRouteMain.CalendarPlanRoute.route){
-                CalendarScreen()
+        NavHost(navHostController, NavRouteMain.WorkPerformanceRoute.route,
+            Modifier
+                .fillMaxSize()
+                .background(colors.BrushBackgroundApp)){
+            composable(NavRouteMain.WorkPerformanceRoute.route){
+                NavWorkPerformance()
             }
         }
     }

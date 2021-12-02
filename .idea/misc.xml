@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/SU/AndroidStudioProjects/Okei2/app/src/main/res/drawable/ic_calendar.xml" value="0.2703125" />
+        <entry key="..\:/Users/SU/AndroidStudioProjects/Okei2/app/src/main/res/drawable/ic_passed.xml" value="0.2703125" />
+        <entry key="..\:/Users/SU/AndroidStudioProjects/Okei2/app/src/main/res/drawable/ic_underway.xml" value="0.1" />
         <entry key="..\:/Users/SU/AndroidStudioProjects/Okei2/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/SU/AndroidStudioProjects/Okei2/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2518518518518518" />
       </map>

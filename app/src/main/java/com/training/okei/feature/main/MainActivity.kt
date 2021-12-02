@@ -9,7 +9,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme.colors
 import androidx.compose.ui.Modifier
-import com.training.okei.feature.navigation.NavigationApp
+import com.training.okei.feature.navigation.NavApp
 import com.training.okei.feature.ui.theme.BrushBackgroundApp
 
 import com.training.okei.feature.ui.theme.OkeiTheme
@@ -25,7 +25,7 @@ class MainActivity : ComponentActivity() {
                         .fillMaxSize()
                         .background(colors.BrushBackgroundApp)
                 ){
-                    NavigationApp(model)
+                    NavApp(model)
                 }
             }
         }

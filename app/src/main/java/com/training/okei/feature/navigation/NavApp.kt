@@ -10,18 +10,16 @@ import androidx.compose.runtime.remember
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.work.ExistingWorkPolicy
-import androidx.work.WorkManager
 import com.google.gson.Gson
 import com.training.okei.data.UserAuthData
-import com.training.okei.data.UserRepository
+import com.training.okei.data.repositories.UserRepository
 import com.training.okei.feature.main.ViewModelMain
 import com.training.okei.feature.ui.screen.main.MainScreen
 import com.training.okei.feature.ui.screen.signin.SignInScreen
 import com.training.okei.feature.ui.screen.splash.SplashScreen
 import com.training.okei.module.workmanager.WorkAuthorization
 
-enum class NavigationRouteApp {
+enum class NavRouteApp {
     Splash,
     SignIn,
     Main
@@ -29,28 +27,28 @@ enum class NavigationRouteApp {
 
 
 @Composable
-fun ComponentActivity.NavigationApp(modelMain: ViewModelMain) {
+fun ComponentActivity.NavApp(modelMain: ViewModelMain) {
     val nav = rememberNavController()
     val user by modelMain.liveDataUser.observeAsState()
+
     if (user != null && nav.currentBackStackEntry?.id != null) {
-        nav.navigate(NavigationRouteApp.Main.name)
+        nav.navigate(NavRouteApp.Main.name)
     }
     val needSignIn = remember {
         modelMain.needSignIn
     }
-    if (needSignIn.value) nav.navigate(NavigationRouteApp.SignIn.name)
-    NavHost(nav, NavigationRouteApp.Splash.name) {
-        composable(NavigationRouteApp.Splash.name) {
+    if (needSignIn.value) nav.navigate(NavRouteApp.SignIn.name)
+    NavHost(nav, NavRouteApp.Splash.name) {
+        composable(NavRouteApp.Splash.name) {
             SplashScreen()
             LaunchedEffect(true){
-                WorkAuthorization.start(this@NavigationApp)
+                WorkAuthorization.start(this@NavApp)
                 if (user != null){
-                    nav.navigate(NavigationRouteApp.Main.name)
+                    nav.navigate(NavRouteApp.Main.name)
                 }
             }
-
         }
-        composable(NavigationRouteApp.SignIn.name) {
+        composable(NavRouteApp.SignIn.name) {
             SignInScreen { login, password ->
                 UserRepository.saveDataAut(
                     Gson().toJson(UserAuthData(login, password))
@@ -59,13 +57,13 @@ fun ComponentActivity.NavigationApp(modelMain: ViewModelMain) {
                 nav.popBackStack()
             }
             BackHandler {
-                this@NavigationApp.finish()
+                this@NavApp.finish()
             }
         }
-        composable(NavigationRouteApp.Main.name) {
+        composable(NavRouteApp.Main.name) {
             MainScreen(modelMain)
             BackHandler {
-                this@NavigationApp.finish()
+                this@NavApp.finish()
             }
         }
     }

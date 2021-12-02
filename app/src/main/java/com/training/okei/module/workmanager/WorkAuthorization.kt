@@ -1,13 +1,11 @@
 package com.training.okei.module.workmanager
 
 import android.content.Context
-import android.util.Log
 import androidx.work.*
 import com.google.gson.Gson
 import com.training.okei.R
-import com.training.okei.data.User
 import com.training.okei.data.UserAuthData
-import com.training.okei.data.UserRepository
+import com.training.okei.data.repositories.UserRepository
 import com.training.okei.feature.app.toast
 import com.training.okei.module.web.Web
 import kotlinx.coroutines.Dispatchers

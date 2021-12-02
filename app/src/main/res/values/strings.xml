@@ -4,10 +4,9 @@
     <string name="password">Пароль</string>
     <string name="sign_in">Войти</string>
     <string name="advertisement">Оренбургский колледж экономики и информатики</string>
-    <string name="calendar_plan">Календарный план</string>
+    <string name="work_performance">Рабочая успеваемость</string>
     <string name="enter_data">Введите данные</string>
     <string name="data_error">Неверные данные</string>
     <string name="server_error">Ошибка на сервере</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="lists_teacher">Список учителей</string>
 </resources>

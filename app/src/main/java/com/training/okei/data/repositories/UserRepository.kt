@@ -1,12 +1,10 @@
-package com.training.okei.data
+package com.training.okei.data.repositories
 
 import android.content.Context
 import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.training.okei.data.User
 import com.training.okei.feature.app.App
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 
 object UserRepository {
     private const val KEY_AUT = "KET_AUT"

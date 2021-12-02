@@ -38,3 +38,6 @@ val Colors.colorItem : Color
 
 val Colors.blackOrWhile : Color
     get() = if (isLight) Color.Black else Color.White
+
+val Colors.whileOrBlack : Color
+    get() = if(isLight) Color.White else Color.Black

@@ -24,7 +24,7 @@ import com.training.okei.R
 fun StatusBox(
     size: Dp,
     color: Color,
-    statusBox: StatusBox
+    underway: Boolean?
 ) {
     Box(
         Modifier
@@ -33,14 +33,10 @@ fun StatusBox(
             .padding(4.dp),
         Alignment.Center
     ){
-        statusBox.icon?.let {
-            Icon(painterResource(it),null , Modifier.fillMaxSize(), color)
+        underway?.let {
+            val icon = if (it) R.drawable.ic_underway else R.drawable.ic_passed
+            Icon(painterResource(icon),null , Modifier.fillMaxSize(), color)
         }
     }
 }
 
-enum class StatusBox(@DrawableRes val icon: Int?) {
-    Underway(R.drawable.ic_underway),
-    Passed(R.drawable.ic_passed),
-    Null(null)
-}
