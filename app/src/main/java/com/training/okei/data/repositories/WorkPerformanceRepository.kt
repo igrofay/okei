@@ -1,7 +1,7 @@
 package com.training.okei.data.repositories
 
-import android.util.Log
 import androidx.compose.runtime.mutableStateListOf
+import com.training.okei.data.Eval
 import com.training.okei.data.Evaluation
 import com.training.okei.data.Month
 import com.training.okei.data.Teacher
@@ -89,7 +89,7 @@ class WorkPerformanceRepository {
         list: List<Evaluation?>
     ) {
         try {
-            val result = Web.server.pushChanges(token , nameMonth , login , list)
+            val result = Web.server.pushChanges(token , nameMonth , login , Eval(list))
             withContext(Dispatchers.Main){
                 result.body()?.let {
                     mStateListEvaluations.clear()

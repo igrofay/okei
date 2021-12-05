@@ -24,10 +24,10 @@ interface ServerAPI {
 
     @PUT("months/{name}/{login}")
     suspend fun pushChanges(
-        @Header("Authorization")  token : String,
+        @Header("Authorization") token: String,
         @Path("name") nameMonth: String,
-        @Path("login") loginTeacher : String,
-        @Body list: List<Evaluation?>
+        @Path("login") loginTeacher: String,
+        @Body eval : Eval
     ) : Response<List<Evaluation?>>
 
 }
