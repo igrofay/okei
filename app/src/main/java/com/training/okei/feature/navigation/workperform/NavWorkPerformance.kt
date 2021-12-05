@@ -12,6 +12,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.training.okei.data.Status
 import com.training.okei.feature.ui.screen.main.workperform.calendar.CalendarScreen
+import com.training.okei.feature.ui.screen.main.workperform.evaluations.EvaluationsTeacherScreen
 import com.training.okei.feature.ui.screen.main.workperform.teachers.TeachersScreen
 
 @Composable
@@ -28,9 +29,13 @@ fun NavWorkPerformance(
                 if (
                     Status.Teacher.nameStatus == model.liveDataUser.value!!.status
                 ){
-                    nav.navigate( NavRouteWorkPerformance.EvaluationsTeacherRoute
-                        .getAllRout(it, model.liveDataUser.value!!.login)
-                    )
+                    model.stateListMonths.forEach{ month ->
+                        if(month.nameMonth == it){
+                            nav.navigate( NavRouteWorkPerformance.EvaluationsTeacherRoute
+                                .getAllRout(it , model.liveDataUser.value!!.login, (month.underway ?:false).toString())
+                            )
+                        }
+                    }
                 }else{
                     nav.navigate( NavRouteWorkPerformance.TeachersRoute.getAllRoute(it))
                 }
@@ -50,13 +55,17 @@ fun NavWorkPerformance(
             val listTeachers = remember {
                 model.stateListTeachers
             }
-            Log.e("sss" , listTeachers.size.toString())
+
             TeachersScreen(
                 listTeachers
             ){
-                nav.navigate( NavRouteWorkPerformance.EvaluationsTeacherRoute
-                    .getAllRout(nameMonth!! , it)
-                )
+                model.stateListMonths.forEach{ month ->
+                    if(month.nameMonth == nameMonth){
+                        nav.navigate( NavRouteWorkPerformance.EvaluationsTeacherRoute
+                            .getAllRout(nameMonth , it, (month.underway ?:false).toString())
+                        )
+                    }
+                }
             }
 
             LaunchedEffect(true ){
@@ -67,15 +76,37 @@ fun NavWorkPerformance(
             NavRouteWorkPerformance.EvaluationsTeacherRoute.getAllRout(),
             arguments = listOf(
                 navArgument(NavRouteWorkPerformance.EvaluationsTeacherRoute.argument1) { type = NavType.StringType },
-                navArgument(NavRouteWorkPerformance.EvaluationsTeacherRoute.argument2) { type = NavType.StringType }
+                navArgument(NavRouteWorkPerformance.EvaluationsTeacherRoute.argument2) { type = NavType.StringType },
+                navArgument(NavRouteWorkPerformance.EvaluationsTeacherRoute.argument3) {type = NavType.BoolType}
             )
         ){backStackEntry ->
             val nameMonth = backStackEntry.arguments?.getString(
                 NavRouteWorkPerformance.EvaluationsTeacherRoute.argument1
             )
+
             val loginTeacher = backStackEntry.arguments?.getString(
                 NavRouteWorkPerformance.EvaluationsTeacherRoute.argument2
             )
+
+            val underway =  backStackEntry.arguments?.getBoolean(
+                NavRouteWorkPerformance.EvaluationsTeacherRoute.argument3
+            ) ?: false
+            val listEvaluations = remember {
+                model.stateListEvaluations
+            }
+            LaunchedEffect(true ){
+                model.getTeacherPerformance(nameMonth!! ,loginTeacher!!)
+            }
+
+            EvaluationsTeacherScreen(
+                listEvaluations,
+                model.liveDataUser.value!!.status == Status.Evaluating.nameStatus && underway,
+                model.liveDataUser.value!!.name
+            ){
+                model.pushChanges(
+                    nameMonth!!,   loginTeacher!! , listEvaluations
+                )
+            }
 
         }
     }
@@ -95,11 +126,13 @@ sealed class NavRouteWorkPerformance(val route : String){
     object EvaluationsTeacherRoute : NavRouteWorkPerformance("EvaluationsTeacherRoute"){
         const val argument1 = "nameMonth"
         const val argument2 = "loginTeacher"
+        const val argument3 = "underway"
         fun getAllRout(
             arg1: String = "{${argument1}}",
             arg2: String = "{${argument2}}",
+            arg3: String = "{${argument3}}"
         ) : String{
-            return "$route/$arg1/$arg2"
+            return "$route/$arg1/$arg2/$arg3"
         }
     }
 }

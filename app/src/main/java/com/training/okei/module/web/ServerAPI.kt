@@ -20,5 +20,14 @@ interface ServerAPI {
         @Header("Authorization")  token : String,
         @Path("name") nameMonth: String,
         @Path("login") loginTeacher : String
-    ) : Response<List<Evaluation>>
+    ) : Response<List<Evaluation?>>
+
+    @PUT("months/{name}/{login}")
+    suspend fun pushChanges(
+        @Header("Authorization")  token : String,
+        @Path("name") nameMonth: String,
+        @Path("login") loginTeacher : String,
+        @Body list: List<Evaluation?>
+    ) : Response<List<Evaluation?>>
+
 }

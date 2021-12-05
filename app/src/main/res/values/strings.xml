@@ -9,4 +9,5 @@
     <string name="data_error">Неверные данные</string>
     <string name="server_error">Ошибка на сервере</string>
     <string name="lists_teacher">Список учителей</string>
+    <string name="criteria">Критерии</string>
 </resources>
