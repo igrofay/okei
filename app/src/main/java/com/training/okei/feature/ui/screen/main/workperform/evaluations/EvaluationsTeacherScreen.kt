@@ -158,7 +158,8 @@ fun OneItem(
     enabledEdit: Boolean,
     nameEval: String
 ) {
-    val dt = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+    val dt = SimpleDateFormat("yyyy-MM-dd HH:mm:ss a")
+
     var stateVal by remember {
         mutableStateOf(evaluation.countPoints)
     }
@@ -255,7 +256,7 @@ fun TwoItem(
     enabledEdit: Boolean,
     nameEval: String
 ) {
-    val dt = SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
+    val dt = SimpleDateFormat("yyyy-MM-dd hh:mm:ss a")
     var stateVal by remember {
         mutableStateOf(evaluation.countPoints)
     }
@@ -359,7 +360,7 @@ fun Three_ThirteenItem(
     nameEval: String,
     maxVal: Int = 3
 ) {
-    val dt = SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
+    val dt = SimpleDateFormat("yyyy-MM-dd hh:mm:ss a")
     var stateVal by remember {
         mutableStateOf(evaluation.countPoints)
     }
@@ -418,7 +419,6 @@ fun Three_ThirteenItem(
                     Spacer(Modifier.width(4.dp))
                     Text(stringResource(R.string.no))
                 }
-
 
                 Row {
                     RadioButton(
