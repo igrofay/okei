@@ -158,7 +158,7 @@ fun OneItem(
     enabledEdit: Boolean,
     nameEval: String
 ) {
-    val dt = SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
+    val dt = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
     var stateVal by remember {
         mutableStateOf(evaluation.countPoints)
     }
@@ -197,7 +197,7 @@ fun OneItem(
                 Modifier
                     .fillMaxWidth()
             ) {
-                Text("Оценсчик: $lastEval")
+                Text("Оценщик: $lastEval")
                 Text("Дата: $lastChangeEval")
             }
             Divider(Modifier.padding(vertical = 6.dp))
@@ -296,7 +296,7 @@ fun TwoItem(
                 Modifier
                     .fillMaxWidth()
             ) {
-                Text("Оценсчик: $lastEval")
+                Text("Оценщик: $lastEval")
                 Text("Дата: $lastChangeEval")
             }
             Divider(Modifier.padding(vertical = 6.dp))
@@ -398,7 +398,7 @@ fun Three_ThirteenItem(
                 Modifier
                     .fillMaxWidth()
             ) {
-                Text("Оценсчик: $lastEval")
+                Text("Оценщик: $lastEval")
                 Text("Дата: $lastChangeEval")
             }
             Divider(Modifier.padding(vertical = 6.dp))
@@ -411,7 +411,7 @@ fun Three_ThirteenItem(
             ) {
                 Row {
                     RadioButton(
-                        selected = evaluation.countPoints ==0,
+                        selected = stateVal ==0,
                         onClick = { mutValClick(0) },
                         enabled = enabledEdit
                     )
@@ -422,7 +422,7 @@ fun Three_ThirteenItem(
 
                 Row {
                     RadioButton(
-                        selected = evaluation.countPoints == maxVal,
+                        selected = stateVal == maxVal,
                         onClick = { mutValClick(maxVal) },
                         enabled = enabledEdit
                     )
